@@ -38,5 +38,4 @@ interface RealStateDevelopmentContract
      * @throws RequestException
      */
     public function find(string $uuid): object;
-
 }
