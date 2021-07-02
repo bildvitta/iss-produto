@@ -2,9 +2,9 @@
 
 namespace Bildvitta\IssProduto;
 
+use Bildvitta\IssProduto\Commands\IssProdutoCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Bildvitta\IssProduto\Commands\IssProdutoCommand;
 
 class IssProdutoServiceProvider extends PackageServiceProvider
 {
