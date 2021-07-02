@@ -28,11 +28,9 @@ class RealStateDevelopmentResource
 
     public function search()
     {
-
     }
 
     public function find(string $uuid)
     {
-
     }
 }
