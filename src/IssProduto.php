@@ -6,6 +6,7 @@ use Bildvitta\IssProduto\Contracts\IssProdutoFactory;
 use Bildvitta\IssProduto\Resources\RealStateDevelopmentResource;
 use Illuminate\Http\Client\Factory as HttpClient;
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 
 /**
@@ -21,16 +22,16 @@ class IssProduto extends HttpClient implements IssProdutoFactory
     public PendingRequest $request;
 
     /**
-     * @var ?string
+     * @var string
      */
-    private ?string $token;
+    private string $token;
 
     /**
      * Hub constructor.
      *
-     * @param  ?string  $token
+     * @param  string  $token
      */
-    public function __construct(?string $token = null)
+    public function __construct(string $token)
     {
         parent::__construct();
 
@@ -44,7 +45,7 @@ class IssProduto extends HttpClient implements IssProdutoFactory
      */
     private function prepareRequest(): PendingRequest
     {
-        $baseUrl = config('hub.base_uri').config('hub.prefix');
+        $baseUrl = Config::get('iss-produto.base_uri').Config::get('iss-produto.prefix');
 
         return $this->request = Http::withToken($this->token)
             ->baseUrl($baseUrl)

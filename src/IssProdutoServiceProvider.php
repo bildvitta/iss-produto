@@ -6,8 +6,16 @@ use Bildvitta\IssProduto\Commands\IssProdutoCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
+/**
+ * Class IssProdutoServiceProvider.
+ *
+ * @package Bildvitta\IssProduto
+ */
 class IssProdutoServiceProvider extends PackageServiceProvider
 {
+    /**
+     * @param  Package  $package
+     */
     public function configurePackage(Package $package): void
     {
         /*
@@ -17,9 +25,6 @@ class IssProdutoServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('iss-produto')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_iss-produto_table')
-            ->hasCommand(IssProdutoCommand::class);
+            ->hasConfigFile();
     }
 }

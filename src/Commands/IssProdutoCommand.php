@@ -4,6 +4,11 @@ namespace Bildvitta\IssProduto\Commands;
 
 use Illuminate\Console\Command;
 
+/**
+ * Class IssProdutoCommand.
+ * 
+ * @package Bildvitta\IssProduto\Commands
+ */
 class IssProdutoCommand extends Command
 {
     public $signature = 'iss-produto';
