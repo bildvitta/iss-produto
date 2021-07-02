@@ -2,14 +2,16 @@
 
 namespace Bildvitta\IssProduto\Resources;
 
+use Bildvitta\IssProduto\Contracts\Resources\RealStateDevelopmentContract;
 use Bildvitta\IssProduto\IssProduto;
+use Illuminate\Http\Client\RequestException;
 
 /**
  * Class RealStateDevelopmentResource.
  *
  * @package Bildvitta\IssProduto\Resources
  */
-class RealStateDevelopmentResource
+class RealStateDevelopmentResource implements RealStateDevelopmentContract
 {
     /**
      * @var IssProduto
@@ -26,13 +28,29 @@ class RealStateDevelopmentResource
         $this->issProduto = $issProduto;
     }
 
-    public function search()
+    /**
+     * @param  array  $query
+     *
+     * @return object
+     *
+     * @throws RequestException
+     */
+    public function search(array $query = []): object
     {
-
+        return $this->issProduto->request->get(self::ENDPOINT_PREFIX, $query)->throw()->object();
     }
 
-    public function find(string $uuid)
+    /**
+     * @param  string  $uuid
+     *
+     * @return object
+     *
+     * @throws RequestException
+     */
+    public function find(string $uuid): object
     {
+        $url = vsprintf(self::ENDPOINT_FIND_BY_UUID, [$uuid]);
 
+        return $this->issProduto->request->get($url)->throw()->object();
     }
 }
