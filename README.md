@@ -5,25 +5,11 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/bildvitta/iss-produto/Check%20&%20fix%20styling?label=code%20style)](https://github.com/bildvitta/iss-produto/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/bildvitta/iss-produto.svg?style=flat-square)](https://packagist.org/packages/bildvitta/iss-produto)
 
----
-This repo can be used as to scaffold a Laravel package. Follow these steps to get started:
-
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this iss-produto
-2. Run "./configure-iss-produto.sh" to run a script that will replace all placeholders throughout all the files
-3. Remove this block of text.
-4. Have fun creating your package.
-5. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+This package is the `Product of Product` module sdk.
 
 ## Support us
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/iss-produto.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/iss-produto)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+- Real Estate Development (paginate, find).
 
 ## Installation
 
@@ -33,14 +19,8 @@ You can install the package via composer:
 composer require bildvitta/iss-produto
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="Bildvitta\IssProduto\IssProdutoServiceProvider" --tag="iss-produto-migrations"
-php artisan migrate
-```
-
 You can publish the config file with:
+
 ```bash
 php artisan vendor:publish --provider="Bildvitta\IssProduto\IssProdutoServiceProvider" --tag="iss-produto-config"
 ```
@@ -49,15 +29,47 @@ This is the contents of the published config file:
 
 ```php
 return [
+
+    'base_uri' => env('MS_PRODUTO_BASE_URI'),
+
+    'prefix' => env('MS_PRODUTO_API_PREFIX')
 ];
 ```
+
+## Config
+
+In your .env file, associate the following variables.
+
+````dotenv
+# API base URL.
+MS_PRODUTO_BASE_URI="http://127.0.0.1:8001"
+
+# API prefix if it exists.
+MS_PRODUTO_API_PREFIX="/api"
+````
 
 ## Usage
 
 ```php
-$iss-produto = new Bildvitta\IssProduto();
-echo $iss-produto->echoPhrase('Hello, Spatie!');
+$issProduto = new \Bildvitta\IssProduto('jwt-hub');
+
+$issProduto->realStateDevelopment()->search(['name' => 'Example']);
+print_r($issProduto->realStateDevelopment()->find('uuid'));
 ```
+
+This is result:
+
+`````json
+{
+    "result": {
+        "uuid": "77b83e9e-5e20-4dbc-8d27-5bf3ea960888",
+        "status": "ready_for_commercialization",
+        "address": "R. Ohana Verdugo",
+        "city": "Théo do Leste",
+        "...": "..."
+    }
+}
+`````
 
 ## Testing
 
@@ -79,7 +91,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [BILDjean.garcia](https://github.com/SOSTheBlack)
+- [BILD\jean.garcia](https://github.com/SOSTheBlack)
 - [All Contributors](../../contributors)
 
 ## License
