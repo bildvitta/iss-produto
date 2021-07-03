@@ -51,7 +51,7 @@ MS_PRODUTO_API_PREFIX="/api"
 ## Usage
 
 ```php
-$issProduto = new \Bildvitta\IssProduto('jwt-hub');
+$issProduto = new \Bildvitta\IssProduto\IssProduto('jwt-hub');
 
 $issProduto->realStateDevelopment()->search(['name' => 'Example']);
 print_r($issProduto->realStateDevelopment()->find('uuid'));
@@ -66,6 +66,7 @@ This is result:
         "status": "ready_for_commercialization",
         "address": "R. Ohana Verdugo",
         "city": "Théo do Leste",
+        "name": "Example",
         "...": "..."
     }
 }

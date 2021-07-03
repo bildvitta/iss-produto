@@ -31,7 +31,7 @@ class IssProduto extends HttpClient implements IssProdutoFactory
      *
      * @param  string  $token
      */
-    public function __construct(string $token)
+    public function __construct(string $token = '')
     {
         parent::__construct();
 
