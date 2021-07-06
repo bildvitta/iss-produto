@@ -49,8 +49,6 @@ class RealStateDevelopmentResource implements RealStateDevelopmentContract
      */
     public function find(string $uuid): object
     {
-        $url = vsprintf(self::ENDPOINT_FIND_BY_UUID, [$uuid]);
-
-        return $this->issProduto->request->get($url)->throw()->object();
+        return $this->issProduto->request->get(vsprintf(self::ENDPOINT_FIND_BY_UUID, [$uuid]))->throw()->object();
     }
 }
