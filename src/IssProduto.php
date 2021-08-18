@@ -6,6 +6,7 @@ use Bildvitta\IssProduto\Contracts\IssProdutoFactory;
 use Bildvitta\IssProduto\Resources\RealStateDevelopmentResource;
 use Illuminate\Http\Client\Factory as HttpClient;
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
@@ -31,6 +32,7 @@ class IssProduto extends HttpClient implements IssProdutoFactory
      * Hub constructor.
      *
      * @param string $token
+     * @throws RequestException
      */
     public function __construct(string $token = '')
     {
@@ -41,8 +43,9 @@ class IssProduto extends HttpClient implements IssProdutoFactory
 
     /**
      * @param string $token
-     *
-     * @return Hub
+     * @param bool $programatic
+     * @return IssProduto
+     * @throws RequestException
      */
     public function setToken(string $token, bool $programatic = false)
     {
@@ -65,6 +68,10 @@ class IssProduto extends HttpClient implements IssProdutoFactory
         return $this;
     }
 
+    /**
+     * @return array|mixed
+     * @throws RequestException
+     */
     private function getToken()
     {
         $hubUrl = config('hub.base_uri') . config('hub.oauth.token_uri');
@@ -83,7 +90,6 @@ class IssProduto extends HttpClient implements IssProdutoFactory
     private function prepareRequest(): PendingRequest
     {
         $baseUrl = Config::get('iss-produto.base_uri') . Config::get('iss-produto.prefix');
-
 
         return $this->request = Http::withToken($this->token)
             ->baseUrl($baseUrl)
