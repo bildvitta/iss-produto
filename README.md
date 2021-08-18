@@ -5,7 +5,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/bildvitta/iss-produto/Check%20&%20fix%20styling?label=code%20style)](https://github.com/bildvitta/iss-produto/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/bildvitta/iss-produto.svg?style=flat-square)](https://packagist.org/packages/bildvitta/iss-produto)
 
-This package is the `Product of Product` module sdk.
+This package is the `Produto do Produto` module sdk.
 
 ## Support us
 
@@ -51,7 +51,7 @@ MS_PRODUTO_API_PREFIX="/api"
 ## Usage
 
 ```php
-$issProduto = new \Bildvitta\IssProduto('jwt-hub');
+$issProduto = new \Bildvitta\IssProduto\IssProduto('jwt-hub');
 
 $issProduto->realStateDevelopment()->search(['name' => 'Example']);
 print_r($issProduto->realStateDevelopment()->find('uuid'));
@@ -66,6 +66,7 @@ This is result:
         "status": "ready_for_commercialization",
         "address": "R. Ohana Verdugo",
         "city": "Théo do Leste",
+        "name": "Example",
         "...": "..."
     }
 }
