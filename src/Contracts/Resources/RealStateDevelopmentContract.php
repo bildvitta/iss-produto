@@ -14,15 +14,15 @@ interface RealStateDevelopmentContract
     /**
      * @const string
      */
-    public const ENDPOINT_PREFIX = '/real-estate-developments';
+    public const ENDPOINT_PREFIX = '/programmatic/real-estate-developments';
 
     /**
      * @const string
      */
-    public const ENDPOINT_FIND_BY_UUID = self::ENDPOINT_PREFIX.'/%s';
+    public const ENDPOINT_FIND_BY_UUID = self::ENDPOINT_PREFIX . '/%s';
 
     /**
-     * @param  array  $query
+     * @param array $query
      *
      * @return object
      *
@@ -31,7 +31,7 @@ interface RealStateDevelopmentContract
     public function search(array $query = []): object;
 
     /**
-     * @param  string  $uuid
+     * @param string $uuid
      *
      * @return object
      *
