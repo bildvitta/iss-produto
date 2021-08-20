@@ -38,7 +38,12 @@ class IssProduto extends HttpClient implements IssProdutoFactory
     {
         parent::__construct();
 
-        $this->setToken($token, true);
+        $programatic = true;
+        if ($token != '') {
+            $programatic = false;
+        }
+
+        $this->setToken($token, $programatic);
     }
 
     /**
@@ -62,7 +67,6 @@ class IssProduto extends HttpClient implements IssProdutoFactory
             $this->token = $accessToken;
         }
 
-
         $this->prepareRequest();
 
         return $this;
@@ -74,13 +78,15 @@ class IssProduto extends HttpClient implements IssProdutoFactory
      */
     private function getToken()
     {
-        $hubUrl = config('hub.base_uri') . config('hub.oauth.token_uri');
+        $hubUrl = Config::get('hub.base_uri') . Config::get('hub.oauth.token_uri');
+        $clientId = Config::get('hub.programatic_access.client_id');
+        $secretId = Config::get('hub.programatic_access.client_secret');
         $response = Http::asForm()->post($hubUrl, [
             'grant_type' => 'client_credentials',
-            'client_id' => Config::get('hub.programatic_access.client_id'),
-            'client_secret' => Config::get('hub.programatic_access.client_secret'),
+            'client_id' => $clientId,
+            'client_secret' => $secretId,
             'scope' => '*',
-        ])->throw();
+        ]);
         return $response->json('access_token');
     }
 
@@ -94,7 +100,22 @@ class IssProduto extends HttpClient implements IssProdutoFactory
         return $this->request = Http::withToken($this->token)
             ->baseUrl($baseUrl)
             ->withOptions(self::DEFAULT_OPTIONS)
-            ->withHeaders(self::DEFAULT_HEADERS);
+            ->withHeaders($this->getHeaders());
+    }
+
+    /**
+     * Get default headers
+     *
+     * @return string[]
+     */
+    public function getHeaders()
+    {
+        return array_merge(
+            self::DEFAULT_HEADERS,
+            [
+                'Almobi-Host' => Config::get('app.slug', '')
+            ]
+        );
     }
 
     /**
