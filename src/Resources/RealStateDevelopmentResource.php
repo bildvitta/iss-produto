@@ -41,14 +41,15 @@ class RealStateDevelopmentResource implements RealStateDevelopmentContract
     }
 
     /**
-     * @param string $uuid
+     * @param  string  $uuid
+     * @param  array  $query
      *
      * @return object
      *
      * @throws RequestException
      */
-    public function find(string $uuid): object
+    public function find(string $uuid, array $query = []): object
     {
-        return $this->issProduto->request->get(vsprintf(self::ENDPOINT_FIND_BY_UUID, [$uuid]))->throw()->object();
+        return $this->issProduto->request->get(vsprintf(self::ENDPOINT_FIND_BY_UUID, [$uuid]), $query)->throw()->object();
     }
 }
