@@ -24,17 +24,17 @@ class IssProduto extends HttpClient implements IssProdutoFactory
     public PendingRequest $request;
 
     /**
-     * @var string
+     * @var ?string
      */
-    private string $token;
+    private ?string $token;
 
     /**
      * Hub constructor.
      *
-     * @param string $token
+     * @param ?string $token
      * @throws RequestException
      */
-    public function __construct(string $token = '')
+    public function __construct(?string $token = '')
     {
         parent::__construct();
 
