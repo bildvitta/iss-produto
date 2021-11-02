@@ -4,6 +4,7 @@ namespace Bildvitta\IssProduto\Resources;
 
 use Bildvitta\IssProduto\Contracts\Resources\RealStateDevelopmentContract;
 use Bildvitta\IssProduto\IssProduto;
+use Bildvitta\IssProduto\Resources\RealEstateDevelopments\MirrorResource;
 use Illuminate\Http\Client\RequestException;
 
 /**
@@ -26,6 +27,14 @@ class RealStateDevelopmentResource implements RealStateDevelopmentContract
     public function __construct(IssProduto $issProduto)
     {
         $this->issProduto = $issProduto;
+    }
+
+    /**
+     * @return MirrorResource
+     */
+    public function mirrors(): MirrorResource
+    {
+        return new MirrorResource($this->issProduto);
     }
 
     /**

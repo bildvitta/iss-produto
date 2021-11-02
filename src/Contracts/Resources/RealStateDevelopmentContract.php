@@ -2,6 +2,7 @@
 
 namespace Bildvitta\IssProduto\Contracts\Resources;
 
+use Bildvitta\IssProduto\Resources\RealEstateDevelopments\MirrorResource;
 use Illuminate\Http\Client\RequestException;
 
 /**
@@ -19,10 +20,15 @@ interface RealStateDevelopmentContract
     /**
      * @const string
      */
-    public const ENDPOINT_FIND_BY_UUID = self::ENDPOINT_PREFIX . '/%s';
+    public const ENDPOINT_FIND_BY_UUID = self::ENDPOINT_PREFIX.'/%s';
 
     /**
-     * @param array $query
+     * @return MirrorResource
+     */
+    public function mirrors(): MirrorResource;
+
+    /**
+     * @param  array  $query
      *
      * @return object
      *
@@ -31,7 +37,7 @@ interface RealStateDevelopmentContract
     public function search(array $query = []): object;
 
     /**
-     * @param string $uuid
+     * @param  string  $uuid
      *
      * @return object
      *
