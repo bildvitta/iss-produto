@@ -34,7 +34,7 @@ interface RealStateDevelopmentContract
      *
      * @throws RequestException
      */
-    public function search(array $query = []): object;
+    public function search(array $query = [], array $body = []): object;
 
     /**
      * @param  string  $uuid
