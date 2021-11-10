@@ -44,9 +44,17 @@ class RealStateDevelopmentResource implements RealStateDevelopmentContract
      *
      * @throws RequestException
      */
-    public function search(array $query = []): object
+    public function search(array $query = [], array $body = []): object
     {
-        return $this->issProduto->request->get(self::ENDPOINT_PREFIX, $query)->throw()->object();
+        $url = self::ENDPOINT_PREFIX;
+
+        $request = $this->issProduto->request;
+
+        if ($body) {
+            $request->withBody(json_encode($body), 'application/json');
+        }
+
+        return $request->get($url, $query)->throw()->object();
     }
 
     /**
