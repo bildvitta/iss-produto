@@ -5,6 +5,7 @@ namespace Bildvitta\IssProduto\Resources;
 use Bildvitta\IssProduto\Contracts\Resources\RealStateDevelopmentContract;
 use Bildvitta\IssProduto\IssProduto;
 use Bildvitta\IssProduto\Resources\RealEstateDevelopments\MirrorResource;
+use Bildvitta\IssProduto\Resources\RealEstateDevelopments\TypologyResource;
 use Illuminate\Http\Client\RequestException;
 
 /**
@@ -35,6 +36,14 @@ class RealStateDevelopmentResource implements RealStateDevelopmentContract
     public function mirrors(): MirrorResource
     {
         return new MirrorResource($this->issProduto);
+    }
+
+    /**
+     * @return TypologyResource
+     */
+    public function typologies(): TypologyResource
+    {
+        return new TypologyResource($this->issProduto);
     }
 
     /**

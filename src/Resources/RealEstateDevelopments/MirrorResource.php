@@ -3,24 +3,10 @@
 namespace Bildvitta\IssProduto\Resources\RealEstateDevelopments;
 
 use Bildvitta\IssProduto\Contracts\Resources\RealEstateDevelopments\MirrorContract;
-use Bildvitta\IssProduto\IssProduto;
 use Illuminate\Http\Client\RequestException;
 
-class MirrorResource implements MirrorContract
+class MirrorResource extends BaseResource implements MirrorContract
 {
-    /**
-     * @var IssProduto
-     */
-    private IssProduto $issProduto;
-
-    /**
-     * @param  IssProduto  $issProduto
-     */
-    public function __construct(IssProduto $issProduto)
-    {
-        $this->issProduto = $issProduto;
-    }
-
     /**
      * @param  string  $realEstateUuid
      * @param  array  $query
@@ -31,9 +17,6 @@ class MirrorResource implements MirrorContract
      */
     public function reflectorUnities(string $realEstateUuid, array $query = []): object
     {
-        return $this->issProduto->request
-            ->get(vsprintf(self::ENDPOINT_REFLECT_UNITIES, [$realEstateUuid]), $query)
-            ->throw()
-            ->object();
+        return $this->reflector($realEstateUuid, $query, self::ENDPOINT_REFLECT_UNITIES);
     }
 }
