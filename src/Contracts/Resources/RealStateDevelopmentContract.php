@@ -23,6 +23,11 @@ interface RealStateDevelopmentContract
     public const ENDPOINT_FIND_BY_UUID = self::ENDPOINT_PREFIX.'/%s';
 
     /**
+     * @const string
+     */
+    public const ENDPOINT_UNIT_PREFIX = self::ENDPOINT_FIND_BY_UUID.'/unities';
+
+    /**
      * @return MirrorResource
      */
     public function mirrors(): MirrorResource;

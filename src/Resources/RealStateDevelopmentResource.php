@@ -78,4 +78,44 @@ class RealStateDevelopmentResource implements RealStateDevelopmentContract
     {
         return $this->issProduto->request->get(vsprintf(self::ENDPOINT_FIND_BY_UUID, [$uuid]), $query)->throw()->object();
     }
+
+    /**
+     * @param string $uuid
+     * @param array $data
+     * @return object
+     *
+     * @throws RequestException
+     */
+    public function update(string $uuid, array $data = []): object
+    {
+        return $this->issProduto->request->put(vsprintf(self::ENDPOINT_FIND_BY_UUID, [$uuid]), $data)->throw()->object();
+    }
+
+    /**
+     * @param  string  $uuid
+     * @param  array  $query
+     *
+     * @return object
+     *
+     * @throws RequestException
+     */
+    public function unities(string $uuid, array $query = [])
+    {
+        return $this->issProduto->request->get(vsprintf(self::ENDPOINT_UNIT_PREFIX, [$uuid]), $query)->throw()->object();
+    }
+
+    /**
+     * @param string $realEstateDevelopment
+     * @param array $data
+     * @return object
+     *
+     * @throws RequestException
+     */
+    public function updateUnit(string $realEstateDevelopment, array $data = [])
+    {
+        return $this->issProduto->request->put(
+            vsprintf(self::ENDPOINT_UNIT_PREFIX, [$realEstateDevelopment]),
+            ['data' => $data]
+        )->throw()->object();
+    }
 }
