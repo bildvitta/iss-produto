@@ -21,15 +21,20 @@ class BaseResource
     }
 
     /**
-     * @param string $realEstateUuid
-     * @param array $query
-     * @param string $endpoint
+     * @param  string  $realEstateUuid
+     * @param  array  $query
+     * @param  string  $endpoint
+     *
      * @return object
      *
      * @throws RequestException
      */
     public function reflector(string $realEstateUuid, array $query, string $endpoint): object
     {
+        if ($this->issProduto->getProgrammatic()) {
+            $endpoint = '/programmatic'.$endpoint;
+        }
+
         return $this->issProduto->request
             ->get(vsprintf($endpoint, [$realEstateUuid]), $query)
             ->throw()
