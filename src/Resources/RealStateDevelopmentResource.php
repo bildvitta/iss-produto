@@ -23,7 +23,7 @@ class RealStateDevelopmentResource implements RealStateDevelopmentContract
     /**
      * RealStateDevelopmentResource constructor.
      *
-     * @param IssProduto $issProduto
+     * @param  IssProduto  $issProduto
      */
     public function __construct(IssProduto $issProduto)
     {
@@ -47,7 +47,7 @@ class RealStateDevelopmentResource implements RealStateDevelopmentContract
     }
 
     /**
-     * @param array $query
+     * @param  array  $query
      *
      * @return object
      *
@@ -80,8 +80,9 @@ class RealStateDevelopmentResource implements RealStateDevelopmentContract
     }
 
     /**
-     * @param string $uuid
-     * @param array $data
+     * @param  string  $uuid
+     * @param  array  $data
+     *
      * @return object
      *
      * @throws RequestException
@@ -105,8 +106,9 @@ class RealStateDevelopmentResource implements RealStateDevelopmentContract
     }
 
     /**
-     * @param string $realEstateDevelopment
-     * @param array $data
+     * @param  string  $realEstateDevelopment
+     * @param  array  $data
+     *
      * @return object
      *
      * @throws RequestException

@@ -78,37 +78,6 @@ class IssProduto extends HttpClient implements IssProdutoFactory
     }
 
     /**
-     * Get default headers
-     *
-     * @return string[]
-     */
-    public function getHeaders()
-    {
-        return array_merge(
-            self::DEFAULT_HEADERS,
-            [
-                'Almobi-Host' => Config::get('app.slug', '')
-            ]
-        );
-    }
-
-    /**
-     * @return RealStateDevelopmentResource
-     */
-    public function realStateDevelopment(): RealStateDevelopmentResource
-    {
-        return new RealStateDevelopmentResource($this);
-    }
-
-    /**
-     * @return bool
-     */
-    public function getProgrammatic(): bool
-    {
-        return $this->programmatic;
-    }
-
-    /**
      * @return array|mixed
      * @throws RequestException
      */
@@ -138,5 +107,36 @@ class IssProduto extends HttpClient implements IssProdutoFactory
             ->baseUrl($baseUrl)
             ->withOptions(self::DEFAULT_OPTIONS)
             ->withHeaders($this->getHeaders());
+    }
+
+    /**
+     * Get default headers
+     *
+     * @return string[]
+     */
+    public function getHeaders()
+    {
+        return array_merge(
+            self::DEFAULT_HEADERS,
+            [
+                'Almobi-Host' => Config::get('app.slug', '')
+            ]
+        );
+    }
+
+    /**
+     * @return RealStateDevelopmentResource
+     */
+    public function realStateDevelopment(): RealStateDevelopmentResource
+    {
+        return new RealStateDevelopmentResource($this);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getProgrammatic(): bool
+    {
+        return $this->programmatic;
     }
 }
