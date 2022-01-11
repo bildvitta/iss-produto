@@ -29,34 +29,39 @@ class IssProduto extends HttpClient implements IssProdutoFactory
     private ?string $token;
 
     /**
+     * @var bool
+     */
+    private bool $programmatic = true;
+
+    /**
      * Hub constructor.
      *
-     * @param ?string $token
+     * @param ?string  $token
+     *
      * @throws RequestException
      */
     public function __construct(?string $token = '')
     {
         parent::__construct();
 
-        $programatic = true;
         if ($token != '') {
-            $programatic = false;
+            $this->programmatic = false;
         }
 
-        $this->setToken($token, $programatic);
+        $this->setToken($token);
     }
 
     /**
-     * @param string $token
-     * @param bool $programatic
+     * @param  string  $token
+     *
      * @return IssProduto
      * @throws RequestException
      */
-    public function setToken(string $token, bool $programatic = false)
+    public function setToken(string $token)
     {
         $this->token = $token;
 
-        if ($programatic) {
+        if ($this->programmatic) {
             $clientId = Config::get('hub.programatic_access.client_id');
             if (Cache::has($clientId)) {
                 $accessToken = Cache::get($clientId);
@@ -78,7 +83,7 @@ class IssProduto extends HttpClient implements IssProdutoFactory
      */
     private function getToken()
     {
-        $hubUrl = Config::get('hub.base_uri') . Config::get('hub.oauth.token_uri');
+        $hubUrl = Config::get('hub.base_uri').Config::get('hub.oauth.token_uri');
         $clientId = Config::get('hub.programatic_access.client_id');
         $secretId = Config::get('hub.programatic_access.client_secret');
         $response = Http::asForm()->post($hubUrl, [
@@ -87,6 +92,7 @@ class IssProduto extends HttpClient implements IssProdutoFactory
             'client_secret' => $secretId,
             'scope' => '*',
         ]);
+
         return $response->json('access_token');
     }
 
@@ -95,7 +101,7 @@ class IssProduto extends HttpClient implements IssProdutoFactory
      */
     private function prepareRequest(): PendingRequest
     {
-        $baseUrl = Config::get('iss-produto.base_uri') . Config::get('iss-produto.prefix');
+        $baseUrl = Config::get('iss-produto.base_uri').Config::get('iss-produto.prefix');
 
         return $this->request = Http::withToken($this->token)
             ->baseUrl($baseUrl)
@@ -124,5 +130,13 @@ class IssProduto extends HttpClient implements IssProdutoFactory
     public function realStateDevelopment(): RealStateDevelopmentResource
     {
         return new RealStateDevelopmentResource($this);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getProgrammatic(): bool
+    {
+        return $this->programmatic;
     }
 }
