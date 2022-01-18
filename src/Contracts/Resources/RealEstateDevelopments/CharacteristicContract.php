@@ -9,7 +9,7 @@ interface CharacteristicContract
     /**
      * @const string
      */
-    public const ENDPOINT_PREFIX = '/programmatic/real-estate-developments/%s';
+    public const ENDPOINT_PREFIX = '/real-estate-developments/%s';
 
     /**
      * @const string
