@@ -6,6 +6,7 @@ use Bildvitta\IssProduto\Contracts\Resources\RealStateDevelopmentContract;
 use Bildvitta\IssProduto\IssProduto;
 use Bildvitta\IssProduto\Resources\RealEstateDevelopments\CharacteristicResource;
 use Bildvitta\IssProduto\Resources\RealEstateDevelopments\MirrorResource;
+use Bildvitta\IssProduto\Resources\RealEstateDevelopments\StageResource;
 use Bildvitta\IssProduto\Resources\RealEstateDevelopments\TypologyResource;
 use Illuminate\Http\Client\RequestException;
 
@@ -56,7 +57,16 @@ class RealStateDevelopmentResource implements RealStateDevelopmentContract
     }
 
     /**
+     * @return StageResource
+     */
+    public function stages(): StageResource
+    {
+        return new StageResource($this->issProduto);
+    }
+
+    /**
      * @param  array  $query
+     * @param  array  $body
      *
      * @return object
      *
