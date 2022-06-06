@@ -3,6 +3,7 @@
 namespace Bildvitta\IssProduto;
 
 use Bildvitta\IssProduto\Contracts\IssProdutoFactory;
+use Bildvitta\IssProduto\Resources\BuyingOptionsResource;
 use Bildvitta\IssProduto\Resources\RealStateDevelopmentResource;
 use Illuminate\Http\Client\Factory as HttpClient;
 use Illuminate\Http\Client\PendingRequest;
@@ -130,6 +131,14 @@ class IssProduto extends HttpClient implements IssProdutoFactory
     public function realStateDevelopment(): RealStateDevelopmentResource
     {
         return new RealStateDevelopmentResource($this);
+    }
+
+    /**
+     * @return BuyingOptionsResource
+     */
+    public function buyingOptions(): BuyingOptionsResource
+    {
+        return new BuyingOptionsResource($this);
     }
 
     /**
