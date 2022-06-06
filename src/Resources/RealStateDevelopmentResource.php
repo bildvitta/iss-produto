@@ -4,6 +4,7 @@ namespace Bildvitta\IssProduto\Resources;
 
 use Bildvitta\IssProduto\Contracts\Resources\RealStateDevelopmentContract;
 use Bildvitta\IssProduto\IssProduto;
+use Bildvitta\IssProduto\Resources\RealEstateDevelopments\BlueprintResource;
 use Bildvitta\IssProduto\Resources\RealEstateDevelopments\CharacteristicResource;
 use Bildvitta\IssProduto\Resources\RealEstateDevelopments\MirrorResource;
 use Bildvitta\IssProduto\Resources\RealEstateDevelopments\StageResource;
@@ -62,6 +63,14 @@ class RealStateDevelopmentResource implements RealStateDevelopmentContract
     public function stages(): StageResource
     {
         return new StageResource($this->issProduto);
+    }
+    
+    /**
+     * @return BlueprintResource
+     */
+    public function blueprints(): BlueprintResource
+    {
+        return new BlueprintResource($this->issProduto);
     }
 
     /**
