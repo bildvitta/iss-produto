@@ -5,6 +5,7 @@ namespace Bildvitta\IssProduto\Resources;
 use Bildvitta\IssProduto\Contracts\Resources\RealStateDevelopmentContract;
 use Bildvitta\IssProduto\IssProduto;
 use Bildvitta\IssProduto\Resources\RealEstateDevelopments\BlueprintResource;
+use Bildvitta\IssProduto\Resources\RealEstateDevelopments\UnitResource;
 use Bildvitta\IssProduto\Resources\RealEstateDevelopments\CharacteristicResource;
 use Bildvitta\IssProduto\Resources\RealEstateDevelopments\MirrorResource;
 use Bildvitta\IssProduto\Resources\RealEstateDevelopments\StageResource;
@@ -74,6 +75,14 @@ class RealStateDevelopmentResource implements RealStateDevelopmentContract
     }
 
     /**
+     * @return UnitResource
+     */
+    public function units(): UnitResource
+    {
+        return new UnitResource($this->issProduto);
+    }
+
+    /**
      * @param  array  $query
      * @param  array  $body
      *
@@ -118,34 +127,5 @@ class RealStateDevelopmentResource implements RealStateDevelopmentContract
     public function update(string $uuid, array $data = []): object
     {
         return $this->issProduto->request->put(vsprintf(self::ENDPOINT_FIND_BY_UUID, [$uuid]), $data)->throw()->object();
-    }
-
-    /**
-     * @param  string  $uuid
-     * @param  array  $query
-     *
-     * @return object
-     *
-     * @throws RequestException
-     */
-    public function unities(string $uuid, array $query = [])
-    {
-        return $this->issProduto->request->get(vsprintf(self::ENDPOINT_UNIT_PREFIX, [$uuid]), $query)->throw()->object();
-    }
-
-    /**
-     * @param  string  $realEstateDevelopment
-     * @param  array  $data
-     *
-     * @return object
-     *
-     * @throws RequestException
-     */
-    public function updateUnit(string $realEstateDevelopment, array $data = [])
-    {
-        return $this->issProduto->request->put(
-            vsprintf(self::ENDPOINT_UNIT_PREFIX, [$realEstateDevelopment]),
-            ['data' => $data]
-        )->throw()->object();
     }
 }
