@@ -7,14 +7,9 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 /**
  * Class IssProdutoServiceProvider.
- *
- * @package Bildvitta\IssProduto
  */
 class IssProdutoServiceProvider extends PackageServiceProvider
 {
-    /**
-     * @param  Package  $package
-     */
     public function configurePackage(Package $package): void
     {
         /*

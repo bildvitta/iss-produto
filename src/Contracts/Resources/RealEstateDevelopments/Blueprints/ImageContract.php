@@ -17,12 +17,6 @@ interface ImageContract
     public const ENDPOINT_INDEX = self::ENDPOINT_PREFIX.'/images';
 
     /**
-     * @param  string  $realEstateDevelopmentUuid
-     * @param  string  $blueprintUuid
-     * @param  array  $query
-     *
-     * @return object
-     *
      * @throws RequestException
      */
     public function get(string $realEstateDevelopmentUuid, string $blueprintUuid, array $query = []): object;

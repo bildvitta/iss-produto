@@ -17,11 +17,6 @@ interface BlueprintContract
     public const ENDPOINT_INDEX = self::ENDPOINT_PREFIX.'/blueprints';
 
     /**
-     * @param  string  $realEstateDevelopmentUuid
-     * @param  array  $query
-     *
-     * @return object
-     *
      * @throws RequestException
      */
     public function get(string $realEstateDevelopmentUuid, array $query = []): object;

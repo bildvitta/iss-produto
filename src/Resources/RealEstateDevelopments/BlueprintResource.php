@@ -8,27 +8,19 @@ use Illuminate\Http\Client\RequestException;
 
 class BlueprintResource extends BaseResource implements BlueprintContract
 {
-    /**
-     * @return ImageResource
-     */
     public function images(): ImageResource
     {
         return new ImageResource($this->issProduto);
     }
 
     /**
-     * @param  string  $realEstateDevelopmentUuid
-     * @param  array  $query
-     *
-     * @return object
-     *
      * @throws RequestException
      */
     public function get(string $realEstateDevelopmentUuid, array $query = []): object
     {
         $endpoint = self::ENDPOINT_INDEX;
         if ($this->issProduto->getProgrammatic()) {
-            $endpoint = '/programmatic' . $endpoint;
+            $endpoint = '/programmatic'.$endpoint;
         }
 
         return $this->issProduto->request

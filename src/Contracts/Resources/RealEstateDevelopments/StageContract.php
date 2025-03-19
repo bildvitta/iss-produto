@@ -17,11 +17,6 @@ interface StageContract
     public const ENDPOINT_INDEX = self::ENDPOINT_PREFIX.'/stages';
 
     /**
-     * @param  string  $realEstateUuid
-     * @param  array  $query
-     *
-     * @return object
-     *
      * @throws RequestException
      */
     public function get(string $realEstateUuid, array $query = []): object;

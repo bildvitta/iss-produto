@@ -14,30 +14,18 @@ use Illuminate\Support\Facades\Http;
 
 /**
  * Class IssProduto.
- *
- * @package Bildvitta\IssProduto
  */
 class IssProduto extends HttpClient implements IssProdutoFactory
 {
-    /**
-     * @var PendingRequest
-     */
     public PendingRequest $request;
 
-    /**
-     * @var ?string
-     */
     private ?string $token;
 
-    /**
-     * @var bool
-     */
     private bool $programmatic = true;
 
     /**
      * Hub constructor.
      *
-     * @param ?string  $token
      *
      * @throws RequestException
      */
@@ -53,9 +41,8 @@ class IssProduto extends HttpClient implements IssProdutoFactory
     }
 
     /**
-     * @param  string  $token
-     *
      * @return IssProduto
+     *
      * @throws RequestException
      */
     public function setToken(string $token)
@@ -80,6 +67,7 @@ class IssProduto extends HttpClient implements IssProdutoFactory
 
     /**
      * @return array|mixed
+     *
      * @throws RequestException
      */
     private function getToken()
@@ -97,9 +85,6 @@ class IssProduto extends HttpClient implements IssProdutoFactory
         return $response->json('access_token');
     }
 
-    /**
-     * @return PendingRequest
-     */
     private function prepareRequest(): PendingRequest
     {
         $baseUrl = Config::get('iss-produto.base_uri').Config::get('iss-produto.prefix');
@@ -120,30 +105,21 @@ class IssProduto extends HttpClient implements IssProdutoFactory
         return array_merge(
             self::DEFAULT_HEADERS,
             [
-                'Almobi-Host' => Config::get('app.slug', '')
+                'Almobi-Host' => Config::get('app.slug', ''),
             ]
         );
     }
 
-    /**
-     * @return RealStateDevelopmentResource
-     */
     public function realStateDevelopment(): RealStateDevelopmentResource
     {
         return new RealStateDevelopmentResource($this);
     }
 
-    /**
-     * @return BuyingOptionsResource
-     */
     public function buyingOptions(): BuyingOptionsResource
     {
         return new BuyingOptionsResource($this);
     }
 
-    /**
-     * @return bool
-     */
     public function getProgrammatic(): bool
     {
         return $this->programmatic;

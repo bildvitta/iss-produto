@@ -6,8 +6,6 @@ use Bildvitta\IssProduto\Resources\RealStateDevelopmentResource;
 
 /**
  * Interface IssProdutoFactory.
- *
- * @package Bildvitta\IssProduto\Contracts
  */
 interface IssProdutoFactory
 {
@@ -25,8 +23,5 @@ interface IssProdutoFactory
      */
     public const DEFAULT_OPTIONS = ['allow_redirects' => false];
 
-    /**
-     * @return RealStateDevelopmentResource
-     */
     public function realStateDevelopment(): RealStateDevelopmentResource;
 }
