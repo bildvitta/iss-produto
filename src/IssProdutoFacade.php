@@ -19,6 +19,6 @@ class IssProdutoFacade extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return 'iss-produto';
+        return \Bildvitta\IssProduto\IssProduto::class;
     }
 }
