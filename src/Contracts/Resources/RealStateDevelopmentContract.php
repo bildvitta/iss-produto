@@ -7,8 +7,6 @@ use Illuminate\Http\Client\RequestException;
 
 /**
  * Interface RealStateDevelopmentContract.
- *
- * @package Bildvitta\IssProduto\Contracts\Resources
  */
 interface RealStateDevelopmentContract
 {
@@ -27,25 +25,14 @@ interface RealStateDevelopmentContract
      */
     public const ENDPOINT_UNIT_PREFIX = self::ENDPOINT_FIND_BY_UUID.'/unities';
 
-    /**
-     * @return MirrorResource
-     */
     public function mirrors(): MirrorResource;
 
     /**
-     * @param  array  $query
-     *
-     * @return object
-     *
      * @throws RequestException
      */
     public function search(array $query = [], array $body = []): object;
 
     /**
-     * @param  string  $uuid
-     *
-     * @return object
-     *
      * @throws RequestException
      */
     public function find(string $uuid): object;

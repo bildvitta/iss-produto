@@ -6,8 +6,6 @@ use Illuminate\Console\Command;
 
 /**
  * Class IssProdutoCommand.
- *
- * @package Bildvitta\IssProduto\Commands
  */
 class IssProdutoCommand extends Command
 {

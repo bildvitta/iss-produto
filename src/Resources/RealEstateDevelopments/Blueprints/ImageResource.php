@@ -9,19 +9,13 @@ use Illuminate\Http\Client\RequestException;
 class ImageResource extends BaseResource implements ImageContract
 {
     /**
-     * @param  string  $realEstateDevelopmentUuid
-     * @param  string  $blueprintUuid
-     * @param  array  $query
-     *
-     * @return object
-     *
      * @throws RequestException
      */
     public function get(string $realEstateDevelopmentUuid, string $blueprintUuid, array $query = []): object
     {
         $endpoint = self::ENDPOINT_INDEX;
         if ($this->issProduto->getProgrammatic()) {
-            $endpoint = '/programmatic' . $endpoint;
+            $endpoint = '/programmatic'.$endpoint;
         }
 
         return $this->issProduto->request

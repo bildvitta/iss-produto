@@ -7,26 +7,14 @@ use Illuminate\Http\Client\RequestException;
 
 class BaseResource
 {
-    /**
-     * @var IssProduto
-     */
     protected IssProduto $issProduto;
 
-    /**
-     * @param  IssProduto  $issProduto
-     */
     public function __construct(IssProduto $issProduto)
     {
         $this->issProduto = $issProduto;
     }
 
     /**
-     * @param  string  $realEstateUuid
-     * @param  array  $query
-     * @param  string  $endpoint
-     *
-     * @return object
-     *
      * @throws RequestException
      */
     public function reflector(string $realEstateUuid, array $query, string $endpoint): object

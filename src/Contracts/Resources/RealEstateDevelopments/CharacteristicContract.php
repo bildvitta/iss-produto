@@ -17,11 +17,6 @@ interface CharacteristicContract
     public const ENDPOINT_REFLECT_UNITIES = self::ENDPOINT_PREFIX.'/characteristics/reflector_characteristics';
 
     /**
-     * @param  string  $realEstateUuid
-     * @param  array  $query
-     *
-     * @return object
-     *
      * @throws RequestException
      */
     public function reflectorCharacteristics(string $realEstateUuid, array $query = []): object;

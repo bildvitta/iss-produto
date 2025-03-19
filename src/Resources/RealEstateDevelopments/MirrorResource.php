@@ -8,11 +8,6 @@ use Illuminate\Http\Client\RequestException;
 class MirrorResource extends BaseResource implements MirrorContract
 {
     /**
-     * @param  string  $realEstateUuid
-     * @param  array  $query
-     *
-     * @return object
-     *
      * @throws RequestException
      */
     public function reflectorUnities(string $realEstateUuid, array $query = []): object
