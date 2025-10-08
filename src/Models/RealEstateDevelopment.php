@@ -4,6 +4,7 @@ namespace Bildvitta\IssProduto\Models;
 
 use Bildvitta\IssProduto\Traits\UsesProdutoDB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Ramsey\Uuid\Uuid;
@@ -21,6 +22,11 @@ class RealEstateDevelopment extends Model
         self::creating(function ($model) {
             $model->uuid = (string) Uuid::uuid4();
         });
+    }
+
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(HubCompany::class, 'hub_company_id', 'id');
     }
 
     public function work_period_installment_integration_table(): HasOne
