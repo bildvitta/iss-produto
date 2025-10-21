@@ -1,0 +1,28 @@
+<?php
+
+namespace Bildvitta\IssProduto\Enums\CreditPolicy\Parameter;
+
+use Bildvitta\IssProduto\Traits\EnumHelper;
+
+enum Type: string
+{
+    use EnumHelper;
+
+    case PRO_SOLUTO = 'pro_soluto';
+
+    case AFTER_KEY_DELIVERY = 'after_key_delivery';
+
+    case INCOME = 'income';
+
+    case INCOME_COMMITMENT = 'income_commitment';
+
+    public function getLabel(): ?string
+    {
+        return match ($this) {
+            self::PRO_SOLUTO => __('Pro soluto'),
+            self::AFTER_KEY_DELIVERY => __('After key delivery'),
+            self::INCOME => __('Income'),
+            self::INCOME_COMMITMENT => __('Income commitment'),
+        };
+    }
+}
