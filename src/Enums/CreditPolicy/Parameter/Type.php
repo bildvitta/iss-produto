@@ -2,12 +2,8 @@
 
 namespace Bildvitta\IssProduto\Enums\CreditPolicy\Parameter;
 
-use Bildvitta\IssProduto\Traits\EnumHelper;
-
 enum Type: string
 {
-    use EnumHelper;
-
     case PRO_SOLUTO = 'pro_soluto';
 
     case AFTER_KEY_DELIVERY = 'after_key_delivery';
