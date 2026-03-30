@@ -33,6 +33,8 @@ class Unit extends Model
                 'units.square_meters',
                 'modules.apf',
                 'modules.mega_phase_code',
+                'modules.module',
+                'modules.date_contract_registration',
             ])
             ->first();
     }
